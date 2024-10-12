@@ -31,7 +31,9 @@ const isDev = process.env.NODE_ENV === "dev";
 const mongoUrl =
   process.env.MONGO_URL || "mongodb://127.0.0.1:27017/shopify-express-app";
 
-mongoose.connect(mongoUrl);
+mongoose.connect(mongoUrl,{
+  dbName: process.env.MONGO_DB_NAME || undefined
+});
 
 const createServer = async (root = process.cwd()) => {
   const app = Express();
